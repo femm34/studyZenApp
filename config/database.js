@@ -63,6 +63,39 @@ const createTables = () => {
   createTableDepositHistory();
 };
 
+const createTriggerHandlingOfDepositHistories = () => {
+  connection.query(`CREATE TRIGGER handling_of_deposit_histories
+AFTER INSERT ON users_amount
+FOR EACH ROW
+BEGIN
+    INSERT INTO deposit_history (amount, id_user) VALUES (NEW.amount, NEW.id_user);
+END`);
+};
+
+const createTriggerHandlingOfDepositHistoriesUpdate = () => {
+  connection.query(`CREATE TRIGGER handling_of_deposit_histories_update
+AFTER UPDATE ON users_amount
+FOR EACH ROW
+BEGIN
+    INSERT INTO deposit_history (amount, id_user) VALUES (NEW.amount, NEW.id_user);
+END`);
+};
+
+const createTriggerSettingInitialDeposit = () => {
+  connection.query(`CREATE TRIGGER setting_initial_deposit
+AFTER INSERT ON users
+FOR EACH ROW
+BEGIN
+    INSERT INTO users_amount (amount, id_user) VALUES (0, NEW.id_user);
+END`);
+};
+
+const createTriggers = () => {
+  createTriggerHandlingOfDepositHistories();
+  createTriggerSettingInitialDeposit();
+  createTriggerHandlingOfDepositHistoriesUpdate();
+};
+
 const createDatabase = (databaseName) => {
   connection.query(`create database ${databaseName}`, function (err, result) {
     if (err) {
@@ -73,6 +106,7 @@ const createDatabase = (databaseName) => {
           console.error(err);
         } else {
           createTables();
+          createTriggers();
         }
       });
       console.log("database created successfully");

@@ -7,7 +7,7 @@ const app = require("../app");
 
 router.get("/money-manager", (req, res) => {
   if (req.session.isLoggedIn) {
-    connection.query("use login_attempt", (err, result) => {
+    connection.query("use studyZenApp", (err, result) => {
       if (err) {
         console.error(err);
       } else {
@@ -33,7 +33,7 @@ router.get("/money-manager", (req, res) => {
 
 router.delete("/delete-task/:idTask", (req, res) => {
   const idTask = req.params.idTask;
-  connection.query("USE login_attempt", (err, results) => {
+  connection.query("USE studyZenApp", (err, results) => {
     if (err) {
       console.log(err);
     } else {
@@ -56,7 +56,7 @@ router.put("/tasks/:idTask/:idUser", (req, res) => {
   const idTask = req.params.idTask;
   const idUser = req.params.idUser;
   console.log(idTask, idUser);
-  connection.query("use login_attempt", (err, results) => {
+  connection.query("use studyZenApp", (err, results) => {
     if (err) {
       console.error(err);
     } else {
@@ -78,7 +78,7 @@ router.put("/tasks/:idTask/:idUser", (req, res) => {
 router.put("/money-updateSubt-amount/:id/:addAmount", (req, res) => {
   const idUser = req.params.id;
   const subtAmount = req.params.addAmount;
-  connection.query("USE login_attempt", (err, result) => {
+  connection.query("USE studyZenApp", (err, result) => {
     if (err) {
       console.error(err);
     } else {
@@ -100,7 +100,7 @@ router.put("/money-updateSubt-amount/:id/:addAmount", (req, res) => {
 router.put("/money-updateAdd-amount/:id/:addAmount", (req, res) => {
   const idUser = req.params.id;
   const addAmount = req.params.addAmount;
-  connection.query("USE login_attempt", (err, result) => {
+  connection.query("USE studyZenApp", (err, result) => {
     if (err) {
       console.error(err);
     } else {
@@ -122,11 +122,10 @@ router.put("/money-updateAdd-amount/:id/:addAmount", (req, res) => {
 router.put("/users-update/:id/:newUsername", (req, res) => {
   const idUser = req.params.id;
   const newUsername = req.params.newUsername;
-  connection.query("USE login_attempt", (err, results) => {
+  connection.query("studyZenApp", (err, results) => {
     if (err) {
       console.log(err);
     } else {
-      console.log("conexion fe caca");
       connection.query(
         `update users username set username = '${newUsername}' where id_user = ${idUser};`,
         (err, results) => {
@@ -181,7 +180,7 @@ router.get("/", function (req, res) {
 
 router.get("/dashboard", (req, res) => {
   if (req.session.isLoggedIn) {
-    connection.query("use login_attempt", (err, result) => {
+    connection.query("use studyZenApp", (err, result) => {
       if (err) {
         console.log(err);
       } else {
@@ -211,7 +210,7 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", function (req, res) {
-  connection.query(`USE login_attempt`, (err, result) => {
+  connection.query(`USE studyZenApp`, (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -244,7 +243,7 @@ router.post("/login", function (req, res) {
 
 router.post("/register", function (req, res) {
   // res.render("../views/templates/index", { req: req });
-  connection.query(`USE login_attempt`, (err, result) => {
+  connection.query(`USE studyZenApp`, (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -266,7 +265,7 @@ router.post("/register", function (req, res) {
 router.get("/todo-list", (req, res) => {
   // console.log(req);
   if (req.session.isLoggedIn) {
-    connection.query("use login_attempt", (err, result) => {
+    connection.query("use studyZenApp", (err, result) => {
       if (err) {
         console.error(err);
       } else {
@@ -292,7 +291,7 @@ router.get("/todo-list", (req, res) => {
 });
 
 router.post("/todo-list", (req, res) => {
-  connection.query("USE login_attempt", (err, result) => {
+  connection.query("USE studyZenApp", (err, result) => {
     if (err) {
       console.log(err);
     } else {
