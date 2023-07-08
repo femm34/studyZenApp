@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Document</title>
+</head>
+
+<body class="">
+  <%- include('navbar.ejs', {name: req.session.isLoggedIn}) %>
+  <% if (req.url === '/register'){ %>
+  <%- include('../register_form.ejs'); %>
+  <% } %>
+
+  <% if (req.url === '/login'){ %>
+  <%- include('../login_form.ejs'); %>
+  <% } %>
+
+  <% if(req.session.isLoggedIn && req.url === '/cards'){ %>
+  <%- include('card.ejs', {name: req.session.username}); %>
+  <% } %>
+
+  <% if(req.session.isLoggedIn && req.url === '/money-manager'){ %>
+  <%- include('money_manager.ejs', {amount: amount}); %>
+  <% } %>
+
+  <% if(req.session.isLoggedIn && req.url === '/todo-list'){ %>
+  <%- include('todo_list.ejs', {tasks: tasks}); %>
+  <% } %>
+
+  <% if(req.session.id_rol === 1 && req.session.isLoggedIn && req.url === '/dashboard'){ %>
+  <%- include('table_users', {data: users}) %>
+  <% }%>
+
+  <% if(!req.session.isLoggedIn && req.url === '/') { %>
+  <%- include('main.ejs') %>
+  <%}%>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

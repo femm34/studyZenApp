@@ -1,0 +1,39 @@
+<nav class="navbar bg-primary">
+  <div class="container-fluid p-2">
+    <a class="navbar-brand text-light h1" href="#">Life Manager</a>
+
+    <% if(!req.session.isLoggedIn && req.url === '/'){ %>
+    <a class="btn btn-success" href="/login">login</a>
+    <%}%>
+
+    <% if(req.url === '/cards'){ %>
+    <form method="POST" action="/logout">
+      <button class="btn btn-danger" type="submit">Log out</button>
+    </form>
+    <%}%>
+
+    <% if(req.url === '/dashboard'){ %>
+    <a class="btn btn-success" href="/cards">Go back</a>
+    <%}%>
+
+    <% if(req.session.id_rol === 1 && req.url === '/cards'){ %>
+    <a class="btn btn-success" href="/dashboard">dashboard</a>
+    <% } %>
+
+    <% if(req.session.isLoggedIn && req.url === '/cards'){ %>
+    <a class="btn btn-success" href="/todo-list">To do list</a>
+    <%}%>
+
+      <% if(req.session.isLoggedIn && req.url === '/cards'){ %>
+    <a class="btn btn-success" href="/money-manager">Money manager</a>
+    <%}%>
+    <% if(req.session.isLoggedIn && req.url === '/money-manager'){ %>
+    <a class="btn btn-success" href="/cards">Go back...</a>
+    <%}%>
+
+    <% if(req.session.isLoggedIn && req.url === '/todo-list'){ %>
+    <a class="btn btn-success" href="/cards">go back...</a>
+    <%}%>
+
+  </div>
+</nav>

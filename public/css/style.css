@@ -1,0 +1,4 @@
+   .bg-table-disabled td,
+   .bg-table-disabled th {
+       background-color: rgba(0, 0, 0, 0.075);
+   }

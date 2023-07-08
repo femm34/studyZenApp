@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <table class="table table-hover table-bordered">
+    <thead class="thead-dark table-secondary">
+      <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>email</th>
+        <th>Functions</th>
+      </tr>
+    <tbody>
+      <% for (user of data){%>
+      <tr>
+        <% console.log('s',user.id_user) %>
+        <th><%- user.id_user %></th>
+        <th><%- user.username %></th>
+        <th><%- user.email %></th>
+        <th><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-<%-user.id_user%>" class="btn btn-success">Update</button>
+          <%- include('modal_update.ejs', {user: {id_user: user.id_user}}); %>
+          <button onclick="deleteUser('<%- user.id_user %>')" class="btn btn-danger">Delete</button>
+        </th>
+      </tr>
+      <% } %>
+    </tbody>
+    </thead>
+  </table>
+</div>

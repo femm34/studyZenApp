@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-6 offset-3">
+      <div class="card p-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              .
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="col-12">
+                  <h1 class="text-center">
+                    $<%-amount[0].amount%>
+                  </h1>
+                </div>
+              </div>
+              <div class="row">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#addMoneyModal" class="btn btn-success <%- (amount[0].amount > 0 ? 'col-5' : 'col-12') %>">Agregar</button>
+
+                <% if (amount[0].amount > 0) { %>
+                <div class="col-2"></div>
+                <%}%>
+
+                <% if (amount[0].amount > 0) { %>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#subtMoneyModal" class="btn btn-danger col-5">Quitar</button>
+                <%}%>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('add_money_modal.ejs', {id_user_from_amout: amount[0].id_user}); %> <%- include('subt_money_modal.ejs', {id_user_from_amout: amount[0].id_user}); %>
