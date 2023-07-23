@@ -18,6 +18,7 @@ app.set("views", __dirname + "/views");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static("node_modules"));
 app.use(express.static("public"));
 
 app.use("/", require("./routes/router"));

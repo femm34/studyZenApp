@@ -1,10 +1,3 @@
-// var myModal = document.getElementById("exampleModal");
-// var myInput = document.getElementById("myInput");
-
-// myModal.addEventListener("shown.bs.modal", function () {
-//   myInput.focus();
-// });
-
 const updateMoneyAmountSubt = (id_user, addAmount) => {
   fetch(
     `http://localhost:3000/money-updateSubt-amount/${id_user}/${addAmount}`,

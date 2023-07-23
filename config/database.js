@@ -46,6 +46,15 @@ const createTableUsersAmount = () => {
 )`);
 };
 
+const createTableDepositTracking = () => {
+  connection.query(`CREATE TABLE deposit_tracking (
+  amount DECIMAL(10, 2) NOT NULL,
+  date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  id_user INT,
+  FOREIGN KEY (id_user) REFERENCES users(id_user)
+)`);
+};
+
 const createTableDepositHistory = () => {
   connection.query(`CREATE TABLE deposit_history (
   amount DECIMAL(10, 2) NOT NULL,
@@ -61,6 +70,7 @@ const createTables = () => {
   createTableTodoInfo();
   createTableUsersAmount();
   createTableDepositHistory();
+  createTableDepositTracking();
 };
 
 const createTriggerHandlingOfDepositHistories = () => {
@@ -69,6 +79,7 @@ AFTER INSERT ON users_amount
 FOR EACH ROW
 BEGIN
     INSERT INTO deposit_history (amount, id_user) VALUES (NEW.amount, NEW.id_user);
+    INSERT INTO deposit_tracking (amount, id_user) VALUES (NEW.amount, NEW.id_user);
 END`);
 };
 
@@ -77,7 +88,24 @@ const createTriggerHandlingOfDepositHistoriesUpdate = () => {
 AFTER UPDATE ON users_amount
 FOR EACH ROW
 BEGIN
-    INSERT INTO deposit_history (amount, id_user) VALUES (NEW.amount, NEW.id_user);
+    INSERT INTO deposit_history (amount, id_user) VALUES (NEW.amount - OLD.amount, NEW.id_user);
+END`);
+};
+
+const createTriggerHandlingOfDepositTrackingUpdate = () => {
+  connection.query(`CREATE TRIGGER handling_of_deposit_tracking_update
+AFTER UPDATE ON users_amount
+FOR EACH ROW
+BEGIN
+    DECLARE total_amount INT;
+    
+    -- Obtener el total de "amount" desde deposit_history para el usuario actual
+    SELECT SUM(amount) INTO total_amount
+    FROM deposit_history
+    WHERE id_user = NEW.id_user;
+    
+    -- Insertar el valor total en la tabla deposit_tracking
+    INSERT INTO deposit_tracking (amount, id_user) VALUES (total_amount, NEW.id_user);
 END`);
 };
 
@@ -94,6 +122,7 @@ const createTriggers = () => {
   createTriggerHandlingOfDepositHistories();
   createTriggerSettingInitialDeposit();
   createTriggerHandlingOfDepositHistoriesUpdate();
+  createTriggerHandlingOfDepositTrackingUpdate();
 };
 
 const createDatabase = (databaseName) => {
