@@ -1,24 +1,56 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-6">
-      <img src="/img/3.png" width="100%" alt="">
+      <div class="row">
+        <div class="col-6">
+          <h2 class="main-title">Bienvenido</h2>
+          <p class="mainParagraph">Organízate mejor, controla tus finanzas y maximiza tu éxito académico con nuestras herramientas intuitivas. </p>
+        </div>
+        <div class="col-6">
+          <img src="/img/mainPicture.svg" width="100%" alt="">
+        </div>
+      </div>
+
     </div>
     <div class="col-6">
-      <div class="about mt-5">
-        <h1 class="mt-3 mb-5">Somos LIFE MANAGER</h1>
-        <p class="mt-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque, aliquid aspernatur dolores quo mollitia temporibus expedita ullam magni veritatis amet, voluptas laborum voluptatibus! Tempora illo culpa totam voluptates voluptas commodi.</p>
-      </div>
-
-
-      <div class="about mt-3">
-        <p class="mt-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque, aliquid aspernatur dolores quo mollitia temporibus expedita ullam magni veritatis amet, voluptas laborum voluptatibus! Tempora illo culpa totam voluptates voluptas commodi.</p>
-      </div>
-      <div class="about mt-3">
-        <p class="mt-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque, aliquid aspernatur dolores quo mollitia temporibus expedita ullam magni veritatis amet, voluptas laborum voluptatibus! Tempora illo culpa totam voluptates voluptas commodi.</p>
-      </div>
-      <div class="about mt-3">
-        <p class="mt-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque, aliquid aspernatur dolores quo mollitia temporibus expedita ullam magni veritatis amet, voluptas laborum voluptatibus! Tempora illo culpa totam voluptates voluptas commodi.</p>
-      </div>
+      <% if (req.url === '/'){ %>
+      <%- include('../login_form.ejs'); %>
+      <% } %>
     </div>
   </div>
 </div>
+
+<footer class="bg-darks text-center text-white mt-5">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
+      <!-- Twitter -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+      <!-- Google -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+      <!-- Instagram -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+
+      <!-- Linkedin -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+
+      <!-- Github -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/">studyZenApp.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>

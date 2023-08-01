@@ -1,9 +1,9 @@
-<nav class="navbar bg-primary">
+<nav class="navbar bg-blue">
   <div class="container-fluid p-2">
-    <a class="navbar-brand text-light h1" href="#">Life Manager</a>
+    <a class="navbar-brand text-light h1 title-logo" href="#">studyZenApp</a>
 
     <% if(!req.session.isLoggedIn && req.url === '/'){ %>
-    <a class="btn btn-success" href="/login">login</a>
+    <a class="btn btn-success" href="/register">Sign up</a>
     <%}%>
 
     <% if(req.url === '/cards'){ %>

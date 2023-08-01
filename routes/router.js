@@ -12,17 +12,20 @@ router.get("/money-manager", (req, res) => {
         console.error(err);
       } else {
         connection.query(
-          `select users.username, users.id_user, users_amount.amount, deposit_history.amount 
-          as depo from users inner join users_amount on users.id_user = users_amount.id_user inner 
-          join deposit_history on users.id_user = 
-          deposit_history.id_user where users.id_user = ${req.session.id_user}`,
+          `SELECT u.id_user, u.username, ua.amount, dh.amount AS deposit, dt.amount AS tracking
+          FROM users u
+          INNER JOIN users_amount ua on u.id_user = ua.id_user
+          INNER JOIN deposit_history dh ON u.id_user = dh.id_user
+          INNER JOIN deposit_tracking dt ON dh.id_deposit = dt.id_deposit
+          WHERE u.id_user = ${req.session.id_user}`,
           (err, result) => {
             if (err) {
               console.error(err);
             } else {
+              console.log(result);
               let amountsDepo = new Array();
               for (let data of result) {
-                amountsDepo.push(data.depo);
+                amountsDepo.push(data.tracking);
               }
               res.render("../views/templates/index", {
                 req: req,
@@ -223,7 +226,8 @@ router.post("/login", function (req, res) {
       console.log(err);
     } else {
       connection.query(
-        `SELECT * FROM users where username = '${req.body.username}' and password = '${req.body.password}'`,
+        `SELECT * FROM users where username = '${req.body.username}' 
+        and password = '${req.body.password}'`,
         (err, result) => {
           if (err) {
             console.log(err);

@@ -2,3 +2,39 @@
    .bg-table-disabled th {
        background-color: rgba(0, 0, 0, 0.075);
    }
+
+   .card-scroll{
+    max-height: 400px;
+        overflow-y: auto;
+   }
+
+   .main-title{
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+   }
+
+   .bg-darks{
+    background: #333333;
+   }
+   .bg-blue{
+    background: #007BFF;
+   }
+
+   .bg-yellow{
+    background: #FFD700;
+   }
+
+   .title-logo{
+    font-family: 'Roboto', sans-serif;
+   }
+
+   .circle {
+       width: 150px;
+       /* Puedes ajustar el tamaño del círculo modificando esta propiedad */
+       height: 150px;
+       /* Asegúrate de que width y height tengan el mismo valor para obtener un círculo perfecto */
+       border-radius: 50%;
+       /* El 50% del tamaño del elemento crea un círculo */
+       background-color: #D3D3D3;
+       /* Puedes cambiar el color del círculo ajustando este valor */
+   }

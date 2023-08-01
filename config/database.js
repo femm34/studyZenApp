@@ -50,13 +50,14 @@ const createTableDepositTracking = () => {
   connection.query(`CREATE TABLE deposit_tracking (
   amount DECIMAL(10, 2) NOT NULL,
   date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  id_user INT,
-  FOREIGN KEY (id_user) REFERENCES users(id_user)
+  id_deposit INT,
+  FOREIGN KEY (id_deposit) REFERENCES deposit_history(id_deposit)
 )`);
 };
 
 const createTableDepositHistory = () => {
   connection.query(`CREATE TABLE deposit_history (
+  id_deposit INT primary key auto_increment not null,
   amount DECIMAL(10, 2) NOT NULL,
   date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   id_user INT,
@@ -79,7 +80,16 @@ AFTER INSERT ON users_amount
 FOR EACH ROW
 BEGIN
     INSERT INTO deposit_history (amount, id_user) VALUES (NEW.amount, NEW.id_user);
-    INSERT INTO deposit_tracking (amount, id_user) VALUES (NEW.amount, NEW.id_user);
+END`);
+};
+//  --INSERT INTO deposit_tracking (amount, id_user) VALUES (NEW.amount, NEW.id_user);
+
+const createTriggerhandling_of_id_deposit_tracking = () => {
+  connection.query(`CREATE TRIGGER handling_of_id_deposit_tracking
+BEFORE INSERT ON deposit_history
+FOR EACH ROW
+BEGIN
+    INSERT INTO deposit_tracking (amount, id_deposit) VALUES (NEW.amount, NEW.id_deposit);
 END`);
 };
 
@@ -94,7 +104,7 @@ END`);
 
 const createTriggerHandlingOfDepositTrackingUpdate = () => {
   connection.query(`CREATE TRIGGER handling_of_deposit_tracking_update
-AFTER UPDATE ON users_amount
+AFTER INSERT ON deposit_history
 FOR EACH ROW
 BEGIN
     DECLARE total_amount INT;
@@ -105,7 +115,7 @@ BEGIN
     WHERE id_user = NEW.id_user;
     
     -- Insertar el valor total en la tabla deposit_tracking
-    INSERT INTO deposit_tracking (amount, id_user) VALUES (total_amount, NEW.id_user);
+    INSERT INTO deposit_tracking (amount, id_deposit) VALUES (total_amount, NEW.id_deposit);
 END`);
 };
 
