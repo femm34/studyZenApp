@@ -5,6 +5,12 @@ const session = require("express-session");
 
 const app = require("../app");
 
+router.get("/pomodoro-timer", (req, res) => {
+  if (req.session.isLoggedIn) {
+    res.render("../views/templates/index", { req: req });
+  }
+});
+
 router.get("/money-manager", (req, res) => {
   if (req.session.isLoggedIn) {
     connection.query("use studyZenApp", (err, result) => {
@@ -155,25 +161,43 @@ router.put("/users-update/:id/:newUsername", (req, res) => {
 router.delete("/users/:id", function (req, res) {
   const idUser = req.params.id;
   connection.query(
-    `delete from users_amount where id_user = ${idUser}`,
+    `delete from deposit_tracking where id_user = ${idUser}`,
     (err, results) => {
       if (err) {
         console.log(err);
       } else {
         connection.query(
-          `delete from todo_info where id_user = ${idUser}`,
-          (err, result) => {
+          `delete from deposit_history where id_user = ${idUser}`,
+          (err, results) => {
             if (err) {
               console.log(err);
             } else {
               connection.query(
-                `delete from users where id_user = ${idUser}`,
-                (err, result) => {
+                `delete from users_amount where id_user = ${idUser}`,
+                (err, results) => {
                   if (err) {
                     console.log(err);
                   } else {
-                    console.log("users deleted");
-                    res.redirect("/dashboard");
+                    connection.query(
+                      `delete from todo_info where id_user = ${idUser}`,
+                      (err, result) => {
+                        if (err) {
+                          console.log(err);
+                        } else {
+                          connection.query(
+                            `delete from users where id_user = ${idUser}`,
+                            (err, result) => {
+                              if (err) {
+                                console.log(err);
+                              } else {
+                                console.log("users deleted");
+                                res.redirect("/dashboard");
+                              }
+                            }
+                          );
+                        }
+                      }
+                    );
                   }
                 }
               );

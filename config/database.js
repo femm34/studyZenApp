@@ -51,6 +51,8 @@ const createTableDepositTracking = () => {
   amount DECIMAL(10, 2) NOT NULL,
   date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   id_deposit INT,
+   id_user INT,
+  FOREIGN KEY (id_user) REFERENCES users(id_user),
   FOREIGN KEY (id_deposit) REFERENCES deposit_history(id_deposit)
 )`);
 };
@@ -89,7 +91,7 @@ const createTriggerhandling_of_id_deposit_tracking = () => {
 BEFORE INSERT ON deposit_history
 FOR EACH ROW
 BEGIN
-    INSERT INTO deposit_tracking (amount, id_deposit) VALUES (NEW.amount, NEW.id_deposit);
+    INSERT INTO deposit_tracking (amount, id_deposit, id_user) VALUES (NEW.amount, NEW.id_deposit, NEW.id_user);
 END`);
 };
 
@@ -115,7 +117,7 @@ BEGIN
     WHERE id_user = NEW.id_user;
     
     -- Insertar el valor total en la tabla deposit_tracking
-    INSERT INTO deposit_tracking (amount, id_deposit) VALUES (total_amount, NEW.id_deposit);
+    INSERT INTO deposit_tracking (amount, id_deposit, id_user) VALUES (total_amount, NEW.id_deposit, NEW.id_user);
 END`);
 };
 

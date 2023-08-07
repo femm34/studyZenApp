@@ -1,12 +1,52 @@
+   
+         .background-body {
+             background-image: url('/img/backgroundImage.jpg');
+             background-repeat: no-repeat;
+             background-attachment: fixed;
+             background-size: cover;
+         }
+
+
    .bg-table-disabled td,
    .bg-table-disabled th {
        background-color: rgba(0, 0, 0, 0.075);
    }
 
+   .btn-login:hover{
+    background: #333333;
+    color: #fff;
+   }
+.btn-up:hover{
+    background: #fff;
+}
    .card-scroll{
     max-height: 400px;
         overflow-y: auto;
    }
+.mainParagraph{
+font-family: 'Roboto', sans-serif;
+}
+.margin-footer{
+margin-top: 200px;
+}
+
+  body {
+      min-height: 100vh;
+      /* Asegura que el contenido ocupe al menos la altura de la pantalla */
+      position: relative;
+      /* Asegura que el footer respete el contenido */
+      padding-bottom: 100px;
+      /* Agrega espacio inferior para el footer */
+  }
+
+  footer {
+      position: absolute;
+      /* Fija el footer al final de la página */
+      bottom: 0;
+      /* Asegura que el footer esté en la parte inferior */
+      width: 100%;
+      /* Ocupa todo el ancho de la página */
+  }
 
    .main-title{
     font-family: 'Playfair Display', serif;
@@ -17,7 +57,7 @@
     background: #333333;
    }
    .bg-blue{
-    background: #007BFF;
+    background:#333333;
    }
 
    .bg-yellow{
@@ -26,6 +66,7 @@
 
    .title-logo{
     font-family: 'Roboto', sans-serif;
+    font-weight: 800;
    }
 
    .circle {
@@ -35,6 +76,6 @@
        /* Asegúrate de que width y height tengan el mismo valor para obtener un círculo perfecto */
        border-radius: 50%;
        /* El 50% del tamaño del elemento crea un círculo */
-       background-color: #D3D3D3;
+        background-color: #333333
        /* Puedes cambiar el color del círculo ajustando este valor */
    }

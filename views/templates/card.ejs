@@ -1,10 +1,50 @@
 <div class="container">
-  <div class="card mt-4" style="width: 18rem;">
-    <img src="https://www.mundogato.net/wp-content/uploads/nombres-para-gatos-amarillos.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">I'm <%- name %></h5>
-      <p class="card-text">This is my card</p>
-      <a href="#" class="btn btn-primary">Read more...</a>
+  <div class="row">
+    <div class="col-4">
+      <div class="card mt-4" style="width: 18rem;">
+        <img src="/img/PomodoroPicture.svg" class="card-img-top" alt="..." style="height: 10rem;">
+        <div class="card-body">
+          <h5 class="card-title">Pomodoro</h5>
+          <p class="card-text">Boost Productivity with Pomodoro Timer</p>
+          <a href="/pomodoro-timer" class="btn btn-primary">Go to...</a>
+        </div>
+      </div>
     </div>
+    <div class="col-4">
+      <div class="card mt-4" style="width: 18rem;">
+        <img src="/img/todolistPicture.svg" class="card-img-top" alt="..." style="height: 10rem;">
+        <div class="card-body">
+          <h5 class="card-title">To do list</h5>
+          <p class="card-text">Efficiently Organize Tasks</p>
+          <a href="/todo-list" class="btn btn-primary">Go to...</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card mt-4" style="width: 18rem;">
+        <img src="/img/walletPicture.svg" class="card-img-top" alt="..." style="height: 10rem;">
+        <div class="card-body">
+          <h5 class="card-title">Savings control</h5>
+          <p class="card-text">Track Savings, Reach Goals</p>
+          <a href="/money-manager" class="btn btn-primary">Go to...</a>
+        </div>
+      </div>
+    </div>
+    <% if(req.session.id_rol === 1 && req.url === '/cards'){ %>
+    <p class="btn btn-success">Administrator privileges
+    </p>
+    <div class="col-4">
+      <div class="card mt-4" style="width: 18rem;">
+        <img src="/img/usercontrolPicture.svg" class="card-img-top" alt="..." style="height: 10rem;">
+        <div class="card-body">
+          <h5 class="card-title">User control</h5>
+          <p class="card-text">Manage Users Effortlessly</p>
+          <a href="/dashboard" class="btn btn-primary">Go to...</a>
+        </div>
+      </div>
+    </div>
+    <% } %>
   </div>
+
+
 </div>

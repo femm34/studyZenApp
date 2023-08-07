@@ -1,9 +1,13 @@
 <nav class="navbar bg-blue">
+
   <div class="container-fluid p-2">
-    <a class="navbar-brand text-light h1 title-logo" href="#">studyZenApp</a>
+    <a class="navbar-brand" href="/">
+      <img src="/img/bonsaiPicture.svg" alt="Bonsai image" width="35" height="35">
+    </a>
+    <a class="navbar-brand text-light h1 title-logo mr-3" href="#">studyZenApp</a>
 
     <% if(!req.session.isLoggedIn && req.url === '/'){ %>
-    <a class="btn btn-success" href="/register">Sign up</a>
+    <a class="btn bg-yellow btn-up" href="/register">Sign up</a>
     <%}%>
 
     <% if(req.url === '/cards'){ %>
