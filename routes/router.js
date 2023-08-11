@@ -8,6 +8,24 @@ const app = require("../app");
 router.get("/pomodoro-timer", (req, res) => {
   if (req.session.isLoggedIn) {
     res.render("../views/templates/index", { req: req });
+  } else {
+    res.send("you are not logged in");
+  }
+});
+
+router.get("/zenGPT", (req, res) => {
+  if (req.session.isLoggedIn) {
+    res.render("../views/templates/index", { req: req });
+  } else {
+    res.send("you are not logged in");
+  }
+});
+
+router.get("/advices", (req, res) => {
+  if (req.session.isLoggedIn) {
+    res.render("../views/templates/index", { req: req });
+  } else {
+    res.send("you are not logged in");
   }
 });
 

@@ -14,9 +14,9 @@
         <th><%- user.id_user %></th>
         <th><%- user.username %></th>
         <th><%- user.email %></th>
-        <th><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-<%-user.id_user%>" class="btn btn-success">Update</button>
+        <th><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-<%-user.id_user%>" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></button>
           <%- include('modal_update.ejs', {user: {id_user: user.id_user}}); %>
-          <button onclick="deleteUser('<%- user.id_user %>')" class="btn btn-danger">Delete</button>
+          <button onclick="deleteUser('<%- user.id_user %>')" class="btn btn-danger"><i class="fa-solid fa-user-minus"></i></button>
         </th>
       </tr>
       <% } %>

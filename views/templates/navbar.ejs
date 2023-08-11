@@ -7,7 +7,7 @@
     <a class="navbar-brand text-light h1 title-logo mr-3" href="#">studyZenApp</a>
 
     <% if(!req.session.isLoggedIn && req.url === '/'){ %>
-    <a class="btn bg-yellow btn-up" href="/register">Sign up</a>
+    <a class="btn bg-yellow btn-up" style="background: #FFD700;" href="/register">Sign up</a>
     <%}%>
 
     <% if(req.url === '/cards'){ %>
@@ -20,22 +20,29 @@
     <a class="btn btn-success" href="/cards">Go back</a>
     <%}%>
 
-    <% if(req.session.id_rol === 1 && req.url === '/cards'){ %>
+    <!-- <%# if(req.session.id_rol === 1 && req.url === '/cards'){ %>
     <a class="btn btn-success" href="/dashboard">dashboard</a>
-    <% } %>
+    <%# } %> -->
 
-    <% if(req.session.isLoggedIn && req.url === '/cards'){ %>
-    <a class="btn btn-success" href="/todo-list">To do list</a>
-    <%}%>
+    <%# if(req.session.isLoggedIn && req.url === '/cards'){ %>
+    <!-- <a class="btn btn-success" href="/todo-list">To do list</a> -->
+    <%#}%>
 
-      <% if(req.session.isLoggedIn && req.url === '/cards'){ %>
-    <a class="btn btn-success" href="/money-manager">Money manager</a>
-    <%}%>
+    <%# if(req.session.isLoggedIn && req.url === '/cards'){ %>
+    <!-- <a class="btn btn-success" href="/money-manager">Money manager</a> -->
+    <%#}%>
     <% if(req.session.isLoggedIn && req.url === '/money-manager'){ %>
     <a class="btn btn-success" href="/cards">Go back...</a>
     <%}%>
 
     <% if(req.session.isLoggedIn && req.url === '/todo-list'){ %>
+    <a class="btn btn-success" href="/cards">go back...</a>
+    <%}%>
+        <% if(req.session.isLoggedIn && req.url === '/pomodoro-timer'){ %>
+    <a class="btn btn-success" href="/cards">go back...</a>
+    <%}%>
+
+       <% if(req.session.isLoggedIn && req.url === '/zenGPT'){ %>
     <a class="btn btn-success" href="/cards">go back...</a>
     <%}%>
 

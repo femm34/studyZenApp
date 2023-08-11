@@ -16,9 +16,6 @@
     background: #333333;
     color: #fff;
    }
-.btn-up:hover{
-    background: #fff;
-}
    .card-scroll{
     max-height: 400px;
         overflow-y: auto;
@@ -28,6 +25,14 @@ font-family: 'Roboto', sans-serif;
 }
 .margin-footer{
 margin-top: 200px;
+}
+.btn-up:hover {
+    background: #fff;
+
+}
+thead {
+    top: 0;
+    position: sticky;
 }
 
   body {
@@ -60,8 +65,12 @@ margin-top: 200px;
     background:#333333;
    }
 
+   .bg-red{
+    background: #cb202d;
+   }
+
    .bg-yellow{
-    background: #FFD700;
+    background-color: #FFD700;
    }
 
    .title-logo{
